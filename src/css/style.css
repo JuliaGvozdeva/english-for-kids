@@ -1,0 +1,528 @@
+html, body {
+    font-size: 15px;
+    font-family: "Open Sans","Arial",sans-serif;
+    margin: 0;
+}
+
+body {
+    background-image: url("../../assets/img/fon-nebo.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+header {
+    margin-top: 20px;
+}
+
+.wraper {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav {
+    z-index: 8;
+}
+
+.header-container {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.menu-container {
+    min-width: 300px;
+    position: fixed;
+    top: 0;
+    left: -300px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    transition: 1s;
+    z-index: 4;
+}
+
+.menu-container.active {
+    top:0;
+    left: 0;
+    transition: 1s;
+}
+
+.menu-list {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 1.5rem;
+}
+
+.menu-list a {
+    color: black;
+}
+
+.menu-item {
+    margin-bottom: 15px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.menu-item.active {
+    background: rgb(49,105,223);
+    background: linear-gradient(90deg, rgba(49,105,223,1) 29%, rgba(193,224,252,1) 68%, rgba(255,255,255,1) 100%);
+}
+
+.menu-item.play.active {
+    background: rgb(110, 15, 182);
+    background: linear-gradient(90deg, rgba(110, 15, 182) 32%, rgba(209,16,242,1) 68%, rgb(209, 123, 243) 100%);
+}
+
+.menu-list a:hover .menu-item {
+    background: rgb(49,140,223);
+    background: linear-gradient(90deg, rgba(49,140,223,1) 29%, rgba(193,224,252,1) 68%, rgba(255,255,255,1) 100%);
+}
+
+.menu-list a:hover .menu-item.play {
+    background: rgb(148, 88, 228);
+    background: linear-gradient(90deg, rgba(148, 88, 228) 32%, rgba(209,16,242,1) 68%, rgb(209, 123, 243) 100%);
+}
+
+.menu-list a:active .menu-item {
+    background: rgb(49,105,223);
+    background: linear-gradient(90deg, rgba(49,105,223,1) 29%, rgba(193,224,252,1) 68%, rgba(255,255,255,1) 100%);
+}
+
+.menu-list a:active .menu-item.play {
+    background: rgb(110, 15, 182);
+    background: linear-gradient(90deg, rgba(110, 15, 182) 32%, rgba(209,16,242,1) 68%, rgb(209, 123, 243) 100%);
+}
+
+.menu-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+}
+
+.menu-icon .active {
+    margin-left: 4em;
+    transition: 1s
+}
+
+.menu-icon span {
+    margin-top: 12px;
+}
+
+.menu-icon span, .menu-icon span:before, .menu-icon span:after{
+    width: 100%;
+    position: absolute;
+    height: 3px;
+    background: black;
+    display: block;
+    transition: 0.3s;
+}
+
+.menu-icon span:before{
+    content: "";
+    top: -10px;
+    transition: top 300ms 300ms, transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu-icon span:after{
+    content: "";
+    bottom: -10px;
+    transition: bottom 300ms 300ms, transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu-icon span.active:before{
+    content: "";
+    top: 0px;
+    transform: rotate(45deg);
+    transition: top 300ms, transform 300ms 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.menu-icon span.active:after{
+    content: "";
+    bottom: 0;
+    transform: rotate(-45deg);
+    transition: bottom 300ms, transform 300ms 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.menu-icon span.active, .menu-icon:hover span.active{
+    background: rgba(255, 255, 255, 0); 
+}
+
+.menu-icon span.active, .menu-icon.play:hover span.active{
+    background: rgba(255, 255, 255, 0); 
+}
+
+
+.menu-icon:hover span, .menu-icon:hover span:after, .menu-icon:hover span:before {
+    background-color:  rgb(49,140,223);
+}
+
+.menu-icon.play:hover span, .menu-icon.play:hover span:after, .menu-icon.play:hover span:before {
+    background: rgb(148, 88, 228);
+}
+
+.mode-button {
+    width: 120px;
+    height: 40px;
+    background: rgb(49,140,223);
+    background: linear-gradient(90deg, rgba(49,140,223,1) 29%, rgba(193,224,252,1) 100%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transform: rotate(0deg);
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.mode-button.play {
+    background: rgb(110, 15, 182);
+    background: linear-gradient(90deg, rgba(125,0,223,1) 32%, rgba(209,16,242,1) 68%, rgb(209, 123, 243) 100%);
+}
+
+.mode-button:hover {
+    background: rgb(7, 100, 187);
+    background: linear-gradient(90deg, rgba(7,100,187,1) 29%, rgba(193,224,252,1) 100%);
+}
+
+.mode-button.play:hover {
+    background: rgb(148, 88, 228);
+    background: linear-gradient(90deg, rgba(148, 88, 228) 32%, rgba(209,16,242,1) 68%, rgb(209, 123, 243) 100%);
+}
+
+.mode-icon.active {
+    animation: modeIconRotate;
+    animation-duration: 0.5s;
+    transform: rotate(360deg);
+}
+
+@keyframes modeIconRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+main {
+    margin-top: 40px;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card-item {
+    width: 300px;
+    height: 280px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(68, 67, 67, 0.473);
+}
+
+.play-active {
+    background-color: rgb(148, 88, 228);
+}
+
+.train-active {
+    background-color: #a9ffff70;
+}
+
+.card-item:hover {
+    box-shadow: 0 0 20px rgba(68, 67, 67, 0.473);
+}
+
+.card-name {
+    font-size: 1.4rem;
+}
+
+.card-img img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 10px solid #fff;
+    object-fit: cover;
+    margin: 30px auto;
+}
+
+.footer {
+    box-sizing: content-box;
+    margin-top: 30px;
+    background-color: rgba(34, 32, 32, 0.295);
+    font-size: 1.1rem;
+}
+
+.footer-container {
+    padding: 1em;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.git-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+}
+
+.git-logo {
+    margin-right: 5px;
+}
+
+.git-name:hover {
+    text-decoration: underline;
+}
+
+.github {
+    margin-right: 2em;
+}
+
+.rs-link, .rs-logo {
+    width: 100px;
+    height: 40px;
+}
+
+.overlay, .start-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100em;
+    background-color: rgba(0, 0, 0, 0.445);
+    z-index: 7;
+    display: none;
+    cursor: pointer;
+}
+
+.start-overlay {
+    z-index: 6;
+}
+
+.overlay.active, .start-overlay.active{
+    display: block;
+}
+
+.card-train {
+    width: 300px;
+    height: 280px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #a9ffff70; */
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+    perspective: 1000px;
+}
+
+.card-play {
+    width: 300px;
+    height: 280px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.card-play_img img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.front:hover, .back:hover {
+    box-shadow: 0 0 30px rgba(51, 50, 50, 0.473);
+}
+
+  .front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 1s;
+    backface-visibility: hidden;
+    background-color: #fff;
+    border-radius: 5px;
+   }
+
+  .back {
+    transform: rotateY(180deg);
+  }
+
+  .card-train.active .front {
+    transform: rotateY(180deg);
+}
+
+  .card-train.active .back {
+    transform: rotateY(360deg);
+}
+
+.card-train_img img{
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.card-item_img img{
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.refresh-button_word {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.refresh-button_word:hover {
+    animation: refreshIconRotate;
+    animation-duration: 0.5s;
+    transform: rotate(90deg);
+}
+
+@keyframes refreshIconRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(90deg);
+    }
+}
+
+.card-play:hover {
+    box-shadow: 0 0 30px rgba(51, 50, 50, 0.473);
+}
+
+.start-play {
+    padding: 30px;
+    border-radius: 10px;
+    outline: none;
+    border: 3px solid rgb(148, 88, 228);;
+    background-color: rgb(209, 123, 243);
+    display: block;
+    position: fixed;
+    top: 10em;
+    margin: 0 auto; 
+    z-index: 7;
+    color: white;
+    font-weight: bold;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.start-play:hover, .repeate-game:hover {
+    background: rgb(148, 88, 228);
+    transition: 0.5s;
+}
+
+.start-play:active, .repeate-game:active {
+    background: rgb(105, 63, 160);
+    transition: 0.5s;
+}
+
+.repeate-game {
+    width:5em;
+    height: 5em;
+    border-radius: 50%;
+    outline: none;
+    border: 3px solid rgb(148, 88, 228);;
+    background-color: rgb(209, 123, 243);
+    color: white;
+    cursor: pointer;
+}
+
+.victory {
+    filter: alpha(Opacity=50);
+    opacity: 0.5; 
+}
+
+.attempts-container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.attempt {
+    width: 50px;
+    height: 50px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+}
+
+.game-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 2em;
+    margin-bottom: 2em;
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .game-status img {
+        width: 300px;
+        height: auto;
+    }
+}
